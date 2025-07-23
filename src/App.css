@@ -6,3 +6,8 @@ body {
   font-family: Arial, sans-serif;
   background-color: var(--background-color);
 }
+
+main {
+  min-height: 80vh;
+}
+
