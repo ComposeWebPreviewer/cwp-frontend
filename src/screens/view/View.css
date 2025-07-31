@@ -1,0 +1,53 @@
+/* Main container to hold the entire screen layout */
+.split-screen-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+  font-family: sans-serif;
+}
+
+/* Header section at the top */
+.header {
+  padding: 10px;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+}
+
+/* The run button */
+.run-button {
+  padding: 8px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.run-button:hover {
+  background-color: #0056b3;
+}
+
+/* Container for the two split panes */
+.panes-container {
+  display: flex;
+  flex-grow: 1; /* Takes up the remaining vertical space */
+  overflow: hidden; /* Prevents overflow issues */
+}
+
+/* Common styling for both panes */
+.pane {
+  flex: 1; /* Each pane takes up 50% of the width */
+  padding: 20px;
+  overflow-y: auto; /* Add scroll if content is too long */
+  box-sizing: border-box;
+}
+
+/* The vertical divider line */
+.left-pane {
+  border-right: 2px solid #ddd;
+}
