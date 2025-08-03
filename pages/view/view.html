@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{ template "head" "View" }}
+  </head>
+  <body class="bg-neutral-950">
+    {{ template "navbar" . }}
+    <button onclick="loadPreview({{.Wasm}})" class="fixed bottom-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600">
+      Load Preview
+    </button>
+    <div id="composeApp" class="w-full h-full flex items-center justify-center">
+      <div class="text-white text-2xl">Loading...</div>
+    </div>
+    <script src="{{.Js}}"></script>
+  </body>
+</html>
