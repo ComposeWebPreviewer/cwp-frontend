@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"io.github.composeweb/frontend/pages/home"
+	"io.github.composeweb/frontend/pages/signup"
 	"io.github.composeweb/frontend/pages/view"
 	"io.github.composeweb/frontend/template"
 )
@@ -14,6 +15,8 @@ var resources embed.FS
 
 func main() {
 	template.NewTemplates(resources)
+
+	http.HandleFunc("/signup", signup.SignupPageHandler)
 
 	http.HandleFunc("/", home.HomePageHandler)
 	http.HandleFunc("/view/{id}", view.ViewPageHandler)

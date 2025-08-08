@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{ template "head" "Signup" }}
+  </head>
+  <body>
+    <header>
+      {{ template "navbar" }}
+    </header>
+
+    <main>
+      <div class="hero bg-base-200 min-h-screen">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold">Welcome to Compose Web</h1>
+            <p class="text-lg">Create an account to get started</p>
+            <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4 pl-6">
+              <legend class="fieldset-legend">Signup</legend>
+
+              <label class="label">Email</label>
+              <input type="email" class="input" placeholder="Email" />
+
+              <label class="label">Password</label>
+              <input type="password" class="input" placeholder="Password" />
+
+              <label class="label">Confirm Password</label>
+              <input type="password" class="input" placeholder="Confirm Password" />
+
+              <label class="label">Username</label>
+              <input type="text" class="input" placeholder="Username" />
+
+              <button class="btn btn-neutral mt-4">Signup</button>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
