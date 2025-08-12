@@ -70,29 +70,3 @@ func Login(username, password string) (models.LoginResponse, error) {
 		return models.LoginResponse{}, fmt.Errorf("Unexpected error")
 	}
 }
-
-func LoginSession(session, username string) (models.LoginResponse, error) {
-	requestBody := map[string]string{
-		"session": session,
-		"username": username,
-	}
-	jsonBody, _ := json.Marshal(requestBody)
-
-	res, _ := http.Post(loginEndpoint, "application/json", bytes.NewBuffer(jsonBody))
-	defer res.Body.Close()
-
-	responseBody, _ := io.ReadAll(res.Body)
-
-	var baseResponse models.BaseResponse
-	json.Unmarshal(responseBody, &baseResponse)
-
-	switch baseResponse.Status {
-		case http.StatusOK:
-			var loginResponse models.LoginResponse
-			json.Unmarshal(responseBody, &loginResponse)
-			return loginResponse, nil
-
-	default:
-		return models.LoginResponse{}, fmt.Errorf("Unexpected error")
-	}
-}
