@@ -65,6 +65,12 @@ func Login(username, password string) (models.LoginResponse, error) {
 	  var loginResponse models.LoginResponse
 		json.Unmarshal(responseBody, &loginResponse)
 		return loginResponse, nil
+	
+	case http.StatusNotFound:
+		return models.LoginResponse{}, fmt.Errorf("Invalid username or password")
+
+	case http.StatusForbidden:
+		return models.LoginResponse{}, fmt.Errorf("Account is not activated, please check your email for the activation link")
 
 	default:
 		return models.LoginResponse{}, fmt.Errorf("Unexpected error")
