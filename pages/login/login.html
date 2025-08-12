@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang='en'>
   <head>
-    {{ template "head" "Signup" }}
+    {{ template "head" "Login" }}
   </head>
   <body>
     <header>
@@ -14,20 +14,20 @@
           <div class='max-w-md flex flex-col items-center'>
             <h1 class='text-5xl font-bold'>Welcome to Compose Web</h1>
 
-            <p class='text-lg py-5'>Create an account to get started</p>
+            <p class='text-lg py-5'>Login to get started!</p>
 
             <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
               <div class="card-body">
                 <fieldset class="fieldset text-start">
-                  <legend class='fieldset-legend'>Signup</legend>
+                  <legend class='fieldset-legend'>Login</legend>
 
-                  <form action='/signup' method='POST' class='flex flex-col justify-start'>
+                  <form action='/login' method='POST' class='flex flex-col justify-start'>
                     {{ range .Fields }}
                       {{ template "input" . }}
                       <div class='py-2'></div>
                     {{ end }}
 
-                    <button class='btn btn-neutral mt-4'>Signup</button>
+                    <button class='btn btn-neutral mt-4'>Login</button>
                   </form>
 
                   {{ if ne .Error "" }}

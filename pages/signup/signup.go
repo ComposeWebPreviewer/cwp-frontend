@@ -15,14 +15,14 @@ const (
 	usernameLabel        = "Username"
 )
 
-type SignupPageData struct {
+type signupPageData struct {
 	Fields []input.InputData
 	Error  string
 	Success string
 }
 
 func SignupPageHandler(w http.ResponseWriter, r *http.Request) {
-	renderSignupPage(w, "", "", "", "", "", "", "")
+	renderSignupPage(w, "", "", "", "", "")
 }
 
 func SignupPostHandler(w http.ResponseWriter, r *http.Request) {
@@ -35,8 +35,6 @@ func SignupPostHandler(w http.ResponseWriter, r *http.Request) {
 		renderSignupPage(
 			w,
 			email,
-			"",
-			"",
 			"Passwords do not match",
 			username,
 			"",
@@ -51,8 +49,6 @@ func SignupPostHandler(w http.ResponseWriter, r *http.Request) {
 			w,
 			email,
 			"",
-			"",
-			"",
 			username,
 			err.Error(),
 			"",
@@ -64,8 +60,6 @@ func SignupPostHandler(w http.ResponseWriter, r *http.Request) {
 		w,
 		email,
 		"",
-		"",
-		"",
 		username,
 		"",
 		"Signup successful! You can now log in.",
@@ -75,14 +69,12 @@ func SignupPostHandler(w http.ResponseWriter, r *http.Request) {
 func renderSignupPage(
 	w http.ResponseWriter,
 	email,
-	password,
-	confirmPassword,
 	confirmPasswordError,
 	username,
 	error,
 	success string,
 ) {
-	data := SignupPageData{
+	data := signupPageData{
 		Fields: []input.InputData{
 			{
 				Label:      emailLabel,
@@ -93,9 +85,9 @@ func renderSignupPage(
 			{
 				Label:      passwordLabel,
 				Type:       "password",
-				Value:      password,
+				Value:      "",
 				IsRequired: true,
-				Pattern:    "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}",
+				Pattern:    api.PASSWORD_REGEX,
 				ValidatorHints: []string{
 					"At least 8 characters",
 					"At least one uppercase letter",
@@ -106,9 +98,9 @@ func renderSignupPage(
 			{
 				Label:      confirmPasswordLabel,
 				Type:       "password",
-				Value:      confirmPassword,
+				Value:      "",
 				IsRequired: true,
-				Pattern:    "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}",
+				Pattern:    api.PASSWORD_REGEX,
 				ValidatorHints: []string{
 					"Same as password",
 				},

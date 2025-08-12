@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"io.github.composeweb/frontend/pages/home"
+	"io.github.composeweb/frontend/pages/login"
 	"io.github.composeweb/frontend/pages/signup"
 	"io.github.composeweb/frontend/pages/view"
 	"io.github.composeweb/frontend/template"
@@ -18,6 +19,9 @@ func main() {
 
 	http.HandleFunc("/signup", signup.SignupPageHandler)
 	http.HandleFunc("POST /signup", signup.SignupPostHandler)
+
+	http.HandleFunc("/login", login.LoginPageHandler)
+	http.HandleFunc("POST /login", login.LoginPostHandler)
 
 	http.HandleFunc("/", home.HomePageHandler)
 	http.HandleFunc("/view/{id}", view.ViewPageHandler)
