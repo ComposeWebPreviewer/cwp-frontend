@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
   <head>
     {{ template "head" "Signup" }}
   </head>
@@ -9,27 +9,36 @@
     </header>
 
     <main>
-      <div class="hero bg-base-200 min-h-screen">
-        <div class="hero-content text-center">
-          <div class="max-w-md flex flex-col items-center">
-            <h1 class="text-5xl font-bold">Welcome to Compose Web</h1>
-            <p class="text-lg">Create an account to get started</p>
-            <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4 py-6">
-              <legend class="fieldset-legend">Signup</legend>
+      <div class='hero min-h-screen bg-base-200'>
+        <div class='hero-content text-center'>
+          <div class='max-w-md flex flex-col items-center'>
+            <h1 class='text-5xl font-bold'>Welcome to Compose Web</h1>
 
-              <label class="label">Email</label>
-              <input type="email" class="input" placeholder="Email" />
+            <p class='text-lg py-5'>Create an account to get started</p>
 
-              <label class="label">Password</label>
-              <input type="password" class="input" placeholder="Password" />
+            <fieldset class='fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4 py-6 text-start'>
+              <legend class='fieldset-legend'>Signup</legend>
 
-              <label class="label">Confirm Password</label>
-              <input type="password" class="input" placeholder="Confirm Password" />
+              <form action='/signup' method='POST' class='flex flex-col justify-start'>
+                {{ range .Fields }}
+                  {{ template "input" . }}
+                  <div class='py-2'></div>
+                {{ end }}
 
-              <label class="label">Username</label>
-              <input type="text" class="input" placeholder="Username" />
+                <button class='btn btn-neutral mt-4'>Signup</button>
+              </form>
 
-              <button class="btn btn-neutral mt-4">Signup</button>
+              {{ if ne .Error "" }}
+                <div role="alert" class="alert alert-error alert-soft">
+                  <span>{{ .Error }}</span>
+                </div>
+              {{ end }}
+
+              {{ if ne .Success "" }}
+                <div role="alert" class="alert alert-success alert-soft">
+                  <span>{{ .Success }}</span>
+                </div>
+              {{ end }}
             </fieldset>
           </div>
         </div>

@@ -14,9 +14,10 @@ import (
 var resources embed.FS
 
 func main() {
-	template.NewTemplates(resources)
+	template.NewTemplate(resources)
 
 	http.HandleFunc("/signup", signup.SignupPageHandler)
+	http.HandleFunc("POST /signup", signup.SignupPostHandler)
 
 	http.HandleFunc("/", home.HomePageHandler)
 	http.HandleFunc("/view/{id}", view.ViewPageHandler)

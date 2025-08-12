@@ -1,0 +1,26 @@
+{{ define "input" }}
+  <div class='flex flex-col text-start'>
+    <label class='floating-label {{ if ne .Pattern "" }}validator{{ end }}'>
+      <span>{{ .Label }}</span>
+      <input
+        type='{{ .Type }}'
+        name='{{ .Label }}'
+        class='input'
+        placeholder='{{ .Label }}'
+        value='{{ .Value }}'
+        {{ if .IsRequired }}required{{ end }}
+        {{ if ne .Pattern "" }}pattern='{{ .Pattern }}'{{ end }}
+      />
+      {{ if ne .Error "" }}
+        <p class='text-red-500 text-sm'>{{ .Error }}</p>
+      {{ end }}
+    </label>
+    {{ if ne .Pattern "" }}
+      <p class='validator-hint hidden text-start'>
+        {{ range .ValidatorHints }}
+          {{ if . }}{{ . }}<br />{{ end }}
+        {{ end }}
+      </p>
+    {{ end }}
+  </div>
+{{ end }}
