@@ -12,7 +12,7 @@ import (
 
 var tmpl *template.Template = nil
 
-func NewTemplates(resources embed.FS) {
+func NewTemplate(resources embed.FS) {
 	var paths []string
 	fs.WalkDir(resources, ".", func(path string, d fs.DirEntry, err error) error {
 		if strings.Contains(d.Name(), ".html") {
