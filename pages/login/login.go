@@ -1,7 +1,9 @@
 package login
 
 import (
+	"fmt"
 	"net/http"
+	"time"
 
 	"io.github.composeweb/frontend/api"
 	"io.github.composeweb/frontend/components/input"
@@ -32,6 +34,24 @@ func LoginPostHandler(w http.ResponseWriter, r *http.Request) {
 		renderLoginPage(w, username, err.Error(), "")
 	}
 
+	accessTokenCookie := http.Cookie{
+		Name: "Authorization",
+		Value: loginResponse.TokenType + " " + loginResponse.AccessToken,
+		HttpOnly: true,
+		Secure:   true,
+		MaxAge:  loginResponse.ExpiresIn,
+		Path: 	  "/",
+		SameSite: http.SameSiteLaxMode,
+	}
+	expiresCookie := http.Cookie{
+		Name: "expires",
+		Value: fmt.Sprintf("%d", time.Now().Add(time.Second * time.Duration(loginResponse.ExpiresIn)).Unix()),
+		HttpOnly: true,
+		Secure:   true,
+		Path: 	  "/",
+		MaxAge:  loginResponse.ExpiresIn,
+		SameSite: http.SameSiteLaxMode,
+	}
 	refreshTokenCookie := http.Cookie{
 		Name: "refresh_token",
 		Value: loginResponse.RefreshToken,
@@ -42,9 +62,11 @@ func LoginPostHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	http.SetCookie(w, &refreshTokenCookie)
+	http.SetCookie(w, &accessTokenCookie)
+	http.SetCookie(w, &expiresCookie)
 	w.Header().Add("Authrorization", loginResponse.TokenType + " " + loginResponse.AccessToken)
 
-	http.Redirect(w, r, "/", http.StatusSeeOther)
+	http.Redirect(w, r, "/dashboard", http.StatusSeeOther)
 }
 
 func renderLoginPage(

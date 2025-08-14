@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    {{ template "head" "Dashboard" }}
+  </head>
+  <body>
+    <header>
+      {{ template "navbar" }}
+    </header>
+
+    <main>
+      <div class='grid-flow-row'>
+        {{ range .Cards }}
+          {{ template "composable_card" . }}
+        {{ end }}
+      </div>
+    </main>
+  </body>
+</html>
