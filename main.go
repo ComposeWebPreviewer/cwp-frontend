@@ -25,7 +25,7 @@ func main() {
 
 	http.HandleFunc("/dashboard", dashboard.DashboardPageHandler)
 
-	http.HandleFunc("/view/{id}", view.ViewPageHandler)
+	http.HandleFunc("/view", view.ViewPageHandler)
 
 	http.ListenAndServe(":8080", nil)
 }
