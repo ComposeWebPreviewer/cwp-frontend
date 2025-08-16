@@ -4,7 +4,7 @@ import (
 	"embed"
 	"net/http"
 
-	"io.github.composeweb/frontend/pages/home"
+	"io.github.composeweb/frontend/pages/dashboard"
 	"io.github.composeweb/frontend/pages/login"
 	"io.github.composeweb/frontend/pages/signup"
 	"io.github.composeweb/frontend/pages/view"
@@ -23,8 +23,9 @@ func main() {
 	http.HandleFunc("/login", login.LoginPageHandler)
 	http.HandleFunc("POST /login", login.LoginPostHandler)
 
-	http.HandleFunc("/", home.HomePageHandler)
-	http.HandleFunc("/view/{id}", view.ViewPageHandler)
+	http.HandleFunc("/dashboard", dashboard.DashboardPageHandler)
+
+	http.HandleFunc("/view", view.ViewPageHandler)
 
 	http.ListenAndServe(":8080", nil)
 }

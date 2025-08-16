@@ -1,0 +1,16 @@
+{{ define "composable_card" }}
+  <div class='card bg-base-100 w-96 shadow-sm'>
+    <figure>
+      <img
+        src='{{ .ImageURL }}'
+        alt='{{ .ImageAlt }}'
+      />
+    </figure>
+    <div class='card-body'>
+      <h2 class='card-title'>{{ .Title }}</h2>
+      <div class='card-actions justify-end'>
+        <a href="{{.ButtonURL}}"><button class='btn btn-primary'>Open</button></a>
+      </div>
+    </div>
+  </div>
+{{ end }}
